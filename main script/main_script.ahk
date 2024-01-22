@@ -4,9 +4,8 @@
 ; include section
    #include, %A_ScriptDir%\objects.ahk
    #include, %A_ScriptDir%\classes.ahk
-   #Include, %A_ScriptDir%\F13OneNote.ahk
-   #include, %A_ScriptDir%\F14Programs.ahk
-   #Include, %A_ScriptDir%\F15Folders.ahk
-   #Include, %A_ScriptDir%\F16winTitleSetter.ahk
-   #Include, %A_ScriptDir%\F19experimental.ahk
+   #Include, %A_ScriptDir%\customHotkeys\F13OneNote.ahk
+   #include, %A_ScriptDir%\customHotkeys\F14Programs.ahk
+   #Include, %A_ScriptDir%\customHotkeys\F15Folders.ahk
+   #Include, %A_ScriptDir%\customHotkeys\F16winTitleSetter.ahk
    #Include, %A_ScriptDir%\other_programs.ahk

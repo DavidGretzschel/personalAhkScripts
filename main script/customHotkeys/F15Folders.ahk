@@ -1,6 +1,4 @@
-
-
-; push F15 onto F14
+; push F15
 ; F-key row
    F15 & F1::Return
    F15 & F2::Return
@@ -58,7 +56,7 @@
 ; numpad
    F15 & Numpad1::Return
    F15 & Numpad2::Return
-   F15 & F15::Return
+   F15 & Numpad3::Return
    F15 & Numpad4::Return
    F15 & Numpad5::Return
    F15 & Numpad6::Return
