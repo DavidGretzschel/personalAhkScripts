@@ -1,6 +1,7 @@
 
 ; F-key row
-   F14 & F1::WhatsApp.open()
+   F14 & F1::Run, explorer.exe shell:appsFolder\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App
+   ;global Discord := new program("Discord","C:\Users\david\AppData\Local\Discord\Update.exe --processStart Discord.exe")
    F14 & F2::Discord.open()
    F14 & F3::window_activate("DepartmentOfMysteries", "infix")
    F14 & F4::Return

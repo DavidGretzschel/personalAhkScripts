@@ -1,49 +1,4 @@
 ; object classes for shortcut-use
-   class program {
-      __New(program_name, shortcut_path) {
-         this.program_name := program_name
-         this.shortcut_path := shortcut_path
-         }
-      open() {
-         if(window_match(this.program_name, "infix"))
-               window_activate(this.program_name, "infix")
-         else
-            open_run(this.shortcut_path)
-      }
-      }
-   class webpage {
-      __New(pagename, shortcut_path) {
-         this.pagename := pagename
-         this.shortcut_path := shortcut_path
-      }
-      open() {
-         if(window_match(this.pagename,"infix"))
-               window_activate(this.pagename, "infix")
-         else 
-            Sleep,100
-            ; open_run(this.shortcut_path)
-            Run, % this.shortcut_path
-      }
-      }
-   
-   class OneNote_page {
-      __New(pagename, shortcut_path) {
-         this.pagename := pagename
-         this.shortcut_path := shortcut_path
-      }
-      open() {
-         if(window_match(this.pagename, "exact")){
-               window_activate(this.pagename, "exact")
-            } else if(window_match("ahk_exe ONENOTE.EXE", "exact"))
-               {
-               window_activate("ahk_exe ONENOTE.EXE", "exact")
-               Send, ^m
-               Sleep, 250
-               Run, % this.shortcut_path
-               }
-            else
-               Run, % this.shortcut_path
-      }
       ; day-variable goes from +12 to -12, 0 represents today, put onto the `-key
       open_day(day){
          ; does not really work like that. It be complicated.
@@ -75,20 +30,9 @@
             else
                Run, % this.shortcut_path
       }
-      }
+      
 
-   class folder {
-      __New(path) {
-         this.path := path
-         }
-      open() {
-         if(window_match(this.path, "exact"))
-            window_activate(this.path, "exact")
-         else {
-            Run, % this.path
-            }
-         }
-      }
+
    class OneNotePenPicker{
       static verticalButtonPos := 30
       ; 50 pixels horizontal distance between pens
