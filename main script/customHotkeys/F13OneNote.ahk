@@ -12,18 +12,21 @@
    F13 & F11::Return
    F13 & F12::Return
 ; number-row
-   F13 & `::WinActivate, event horizon
-   ;Numpad1 & 1::
-   F13 & 1::WinActivate, today
-   F13 & 2::WinActivate, tomorrow
-   F13 & 3::WinActivate, ubermorrow
-   F13 & 4::WinActivate, system definition
-   F13 & 5::WinActivate, code of conduct
-   F13 & 6::WinActivate, continuity assurance
-   F13 & 7::WinActivate, 
-   ;F13 & 8::WinActivate, 
-   F13 & 9::WinActivate, waiting for
-   F13 & 0::WinActivate, rituals and TAP
+   F13 & `::eventHorizon.open()
+   ;named window group
+      F13 & 1::WinActivate, today
+      F13 & 2::WinActivate, tomorrow
+      F13 & 3::WinActivate, ubermorrow
+      F16 & 1::WinSetTitle, A,, today
+      F16 & 2::WinSetTitle, A,, tomorrow
+      F16 & 3::WinSetTitle, A,, ubermorrow
+   F13 & 4::Return
+   F13 & 5::Return
+   F13 & 6::Return
+   F13 & 7::Return
+   F13 & 8::Return
+   F13 & 9::Return
+   F13 & 0::Return
 ; top-row
    F13 & q::Return
    F13 & w::Return

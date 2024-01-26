@@ -14,10 +14,10 @@
    F14 & F11::Return
    F14 & F12::Return
 ;number-row... make this util row
-   F14 & `::foreground_toggle()
-   F14 & 1::tall_slender_window()
-   F14 & 2::midsize_window()
-   F14 & 3::quick_audio_switcher()
+   ;F14 & `::foreground_toggle()
+   ;F14 & 1::tall_slender_window()
+   ;F14 & 2::midsize_window()
+   ;F14 & 3::quick_audio_switcher()
    F14 & 4::Return
    F14 & 5::Return
    F14 & 6::Return
@@ -39,10 +39,10 @@
    F14 & p::Return
    
 ; home row
-   F14 & a::AhkScripts.open()
-   F14 & s::Java.open()
-   F14 & d::JavaLearning.open()
-   ;F14 & d::Amazon_orders.open()
+   F14 & a::Return
+   F14 & s::Return
+   ;F14 & d::Return
+   F14 & d::Return
    F14 & f::Return
    F14 & g::Return
    F14 & h::Return
@@ -59,7 +59,6 @@
    F14 & m::Return
 ; numpad
    F14 & Numpad1::Return
-   F14 & F14::Return
    F14 & Numpad3::Return
    F14 & Numpad4::Return
    F14 & Numpad5::Return

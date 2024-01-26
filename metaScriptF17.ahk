@@ -13,16 +13,21 @@ F17 & 2::Run, %A_ScriptDir%\drag script\window_drag.ahk
     F17 & F2::WinClose, window_drag.ahk - AutoHotkey
 F17 & 3::Run, %A_ScriptDir%\window spy script\windowSpy.exe
     F17 & F3::WinClose, Window Spy
-
+F17 & 4::Run, %A_ScriptDir%\experimental script\experimentalScript.ahk
+    F17 & F4::WinClose, experimentalScript.ahk - AutoHotkey
+F17 & 5::Run, %A_ScriptDir%\oneNote Script\oneNoteScript.ahk
+    F17 & F5::WinClose, oneNoteScript.ahk - AutoHotkey
+F17 & 6::Run, %A_ScriptDir%\superMemo Script\superMemoScript.ahk
+    F17 & F6::WinClose, superMemoScript.ahk - AutoHotkey
 ;F17 & 5::Run, C:\Program Files\Alt-Tab Terminator\AltTabTer.exe
 ;   F17 & F5::WinClose, ahk_pid 1072
 
 ; Run Alt-Tab Terminator
-F17 & 5::Run, "C:\Program Files\Alt-Tab Terminator\AltTabTer.exe"
+F17 & 9::Run, "C:\Program Files\Alt-Tab Terminator\AltTabTer.exe"
 
 ; Close Alt-Tab Terminator
 ; currently won't work unless I run the metaScript as an admin.
-F17 & F5::
+F17 & F9::
     ; Find the window associated with Alt-Tab Terminator
     Process, Exist, AltTabTer.exe
     ; The PID of the process is stored in the built-in variable ErrorLevel
@@ -37,3 +42,8 @@ return
 ; self-kill and self-reload
 F17 & Enter::Reload,
 F17 & Backspace::ExitApp
+
+; Age2
+#If WinActive("Age of Empires II: Definitive Edition")
+      F4::F5
+#If

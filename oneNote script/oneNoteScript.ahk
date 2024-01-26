@@ -1,27 +1,40 @@
-; should be renamed to contextHotkeys
-#If WinActive("Age of Empires II: Definitive Edition")
-      F4::F5
-      #If
+class OneNotePenPicker{
+   static verticalButtonPos := 30
+   ; 50 pixels horizontal distance between pens
+   static redPen := 80
+   static yellowPen := 130
+   static greenPen := 180
+   static bluePen := 230
+   static orangePen := 280
+   static tealPen := 330
+   static purplePen := 380
+   static brownPen := 430
+   static whitePen := 480
+   static blackPen := 530
+   static line := 10
+   static arrow := 30
+   static biArrow := 50
 
+   buttonClicker(target){
+      CoordMode, Mouse, Client
+      MouseGetPos, originalPosX, originalPosY
+      MouseClick,, target, OneNotePenPicker.verticalButtonPos
+      MouseMove, originalPosX, originalPosY
+   }
+}
+class OneNoteColorPicker{
+   static verticalButtonPos := 205
+   ; 50 pixels horizontal distance between pens
+   
 
+   buttonClicker(target){
+      CoordMode, Mouse, Client
+      MouseGetPos, originalPosX, originalPosY
+      MouseClick,, target, OneNoteColorPicker.verticalButtonPos
+      MouseMove, originalPosX, originalPosY
+   }
+}
 
-; SuperMemo_integration below
-#If WinActive("ahk_exe sm19.exe")
-      ^+o::Toolbar.buttonClicker(Toolbar.concept_select_box)
-      ^!o::Toolbar.buttonClicker(Toolbar.concept_rootset_button)
-      ^!a::SuperMemo.new_item_child()
-      ^!e::SuperMemo.new_item_sibling()
-      ; key remapping
-      
-      enter::
-      ControlGetFocus, activeControl, ahk_class TElWind ahk_exe sm18.exe
-      if (InStr(activeControl, "Internet Explorer_Server"))
-         Send,+{Enter}
-      else
-         Send, {Enter}
-      return 
-      ; something about the question window, auto-answer
-      #If
 ; since the classes only store values and otherwise do not differ in implementation, one might as well make that a utility function then. And we can probably make this a tool-clicky context and load objects, instead of using the static variables
 #If WinActive("ahk_class Net UI Tool Window")
       1::OneNotePenPicker.buttonClicker(OneNotePenPicker.redPen)
@@ -46,7 +59,7 @@
       ;s::OneNoteColorPicker.buttonClicker(60)
       ;d::OneNoteColorPicker.buttonClicker(70)
       ;z::OneNoteColorPicker.buttonClicker(130)
-      #If
+#If
 
 #If WinActive("ConceptSelectBox")
       !1::ConceptSelectBox.buttonClicker(ConceptSelectBox.viewElement)
@@ -55,4 +68,4 @@
       !4::ConceptSelectBox.buttonClicker(ConceptSelectBox.select_default_concept)
       !5::ConceptSelectBox.buttonClicker(ConceptSelectBox.view_last_in_hook)
       !6::ConceptSelectBox.buttonClicker(ConceptSelectBox.close_concept_select)
-      #If
+#If
