@@ -51,19 +51,3 @@ window_match(window_title, mode){
       }
    Return WinExist(window_title)
    }
-; make a class for those
-foreground_toggle(){ 
-   Winset, Alwaysontop, , A
-}
-tall_slender_window(){
-   WinMove, A,,,, 780, 1000
-}
-midsize_window(){
-   WinMove, A,,,, 800, 800
-}
-
-quick_audio_switcher(){
-   SetKeyDelay, 400
-   Send,#b
-   Send, {Up}{Up}{Enter}{Tab}{Up}{Enter}
-}
