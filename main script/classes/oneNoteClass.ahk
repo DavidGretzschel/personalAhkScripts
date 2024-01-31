@@ -1,41 +1,62 @@
 ;class
-class OneNote_page {
+class Shortcut {
    __New(pagename, shortcut_path) {
       this.pagename := pagename
       this.shortcut_path := shortcut_path
    }
    open() {
       SetTitleMatchMode, 3
-      if(window_match(this.pagename, "exact")){
+      if(WinExist(this.pagename)){
             WinActivate, % this.pagename
-            ;window_activate(this.pagename, "exact")
-         } else if(window_match("ahk_exe ONENOTE.EXE", "exact"))
-            {
-            WinActivate, ahk_exe ONENOTE.EXE
-            ;window_activate("ahk_exe ONENOTE.EXE", "exact")
-            Send, ^m
-            Sleep, 250
-            Run, % this.shortcut_path
-            }
-         else
-            Run, % this.shortcut_path
+         }
+      else if(WinExist("ahk_exe ONENOTE.EXE")){
+         WinActivate, ahk_exe ONENOTE.EXE
+         Send, ^m
+         Sleep, 250
+         Run, % this.shortcut_path
+         }
+      else Run, % this.shortcut_path
+   }
+   programOpen() {
+      SetTitleMatchMode, 1 ; infix-mode
+      if(WinExist(this.pagename))
+         WinActivate, % this.pagename
+      else {
+         MsgBox, Opening %Shortcut_path%
+         open_run(this.shortcut_path)
+      }
    }
 }
 ;objects
-global eventHorizon := new OneNote_page("event horizon - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#event%20horizon&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={E8E54099-3F9E-48E9-99ED-AE2AFB3FCDB3}&end")
-global tempONbuffer := new OneNote_page("temp OneNote buffer - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#temp%20OneNote%20buffer&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={A299E734-FDE2-4672-9A8D-F38DB96675FA}&end")
 
+global eventHorizon := new Shortcut("event horizon - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#event%20horizon&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={E8E54099-3F9E-48E9-99ED-AE2AFB3FCDB3}&end")
+global tempONbuffer := new Shortcut("temp OneNote buffer - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#temp%20OneNote%20buffer&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={A299E734-FDE2-4672-9A8D-F38DB96675FA}&end")
 
-;legacy objects
-;global icon_library := new OneNote_page("icon library - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/bag%204%20org%20templates.one#icon%20library&section-id={4FF23552-3DB1-418A-AB0D-4A2BEF8F0B3F}&page-id={A6098B45-44C2-4E70-A168-383B6DE26A64}&end")
-;global inventory := new OneNote_page("inventory (current) - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/MAPS.one#inventory%20(current)&section-id={9BBD148C-41C3-4B97-BA02-886C2434B4F2}&page-id={1EB101E6-3434-45D4-839C-7FE73F0E3776}&end")
-;global openingHours := new OneNote_page("opening hours - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/MAPS.one#opening%20hours&section-id={9BBD148C-41C3-4B97-BA02-886C2434B4F2}&page-id={A95DBF9F-4D98-4CFF-81C4-59C40ECBC86B}&end")
-;global knowledgeSpace := new OneNote_page("Computational Knowledge Space - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/MAPS.one#Knowledge%20Space&section-id={9BBD148C-41C3-4B97-BA02-886C2434B4F2}&page-id={07F43C0D-19B5-4C15-A2F1-FD7A41CBF463}&end")
-;global systemDefinition := new OneNote_page("system definition - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/MAPS.one#system%20definition&section-id={9BBD148C-41C3-4B97-BA02-886C2434B4F2}&page-id={48797675-632E-4EFD-9163-3E881C52CBB3}&end")
-;global codeOfConduct := new OneNote_page("code of conduct - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/MAPS.one#code%20of%20conduct&section-id={9BBD148C-41C3-4B97-BA02-886C2434B4F2}&page-id={DB205FF7-8126-4209-94EE-FADB649316B4}&end")
-;global continuityAssurance := new OneNote_page("continuity assurance - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/MAPS.one#continuity%20assurance&section-id={9BBD148C-41C3-4B97-BA02-886C2434B4F2}&page-id={B58634BA-F69F-4B64-8F6C-81D20B33AB0E}&end")
-;global shoppingList := new OneNote_page("shopping list - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/MAPS.one#shopping%20list&section-id={9BBD148C-41C3-4B97-BA02-886C2434B4F2}&page-id={398640AC-D0B3-4C8F-BC4E-F4DD2C1EFD40}&end")
-;global restInTheLight := new OneNote_page("rest in the light - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/MAPS.one#rest%20in%20the%20light&section-id={9BBD148C-41C3-4B97-BA02-886C2434B4F2}&page-id={EC3FA1B8-FADB-43C2-9C5A-80741D707D11}&end")
-;global ON_attention := new OneNote_page("Attention main page - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/Attention.one#Attention%20main%20page&section-id={438437C6-E0E7-4AAC-9793-98CDAEF92B0A}&page-id={CCFEB25D-7AAB-4345-8CAD-13FF953F0B8A}&end")
-;global ON_awareness := new OneNote_page("Awareness main page - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/Awareness.one#Awareness%20main%20page&section-id={6158A4E1-F4A6-456E-B921-5566F8F10327}&page-id={850233FE-E8E5-4BF6-8BC7-24E8BED4C5EC}&end")
-;global ON_lesser_awareness := new OneNote_page("lesser Awareness main page - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/Windows11_reboot/Awareness%20lesser.one#lesser%20Awareness%20main%20page&section-id={8295096F-A3A5-49F0-AE64-548D63D0D883}&page-id={440A22ED-B2AC-4D2F-B087-A5865C172116}&end")
+foreground_toggle(){ 
+   Winset, Alwaysontop, , A
+}
+tall_slender_window(){
+   WinMove, A,,,, 780, 1000
+}
+midsize_window(){
+   WinMove, A,,,, 800, 800
+}
+
+quick_audio_switcher(){
+   SetKeyDelay, 400
+   Send,#b
+   Send, {Up}{Up}{Up}{Up}{Enter}{Tab}{Up}{Enter}
+   ; do I need a version for each direction? Lame
+}
+;programs
+global WhatsApp := new Shortcut("WhatsApp","explorer.exe shell:appsFolder\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App")
+global Discord := new Shortcut("Discord","C:\Users\david\AppData\Local\Discord\Update.exe --processStart Discord.exe")
+global Notepad := new Shortcut("temp text buffer","C:\Users\david\USERLAND_CLOUD\OneDrive\USERLAND\resources\AHK targets\temp text buffer.txt")   
+global Honeycam := new Shortcut("Honeycam", "C:\Program Files\Honeycam\Honeycam.exe")
+global LogitechGHub := new Shortcut("Logitech G HUB","C:\Program Files\LGHUB\lghub.exe")
+global AhkScripts := new Shortcut("AHK helper scripts (Workspace) - Visual Studio Code", "C:\Users\david\USERLAND_CLOUD\GitHub\personalAhkScripts\AHK helper scripts.code-workspace")
+
+;webpage apps
+global GoogleImages := new shortcut("Google Images", "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe  --profile-directory=Default --app-id=mncpghpmkopgmjlgjcmokgmhkflifgph")
+global EnglishGermanDictionary := new shortcut("English German Dictionary", "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe  --profile-directory=Default --app-id=ojacioocednnlojnikigjajbbkckfbca")
+global AmazonOrders := new shortcut("Amazon Orders", "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe  --profile-directory=Default --app-id=obfpkkifcflgkglhhnjmhadimbdpjmlc")

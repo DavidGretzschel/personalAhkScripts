@@ -1,6 +1,8 @@
 ; preamble stuff
 #SingleInstance, Force ; only one instance at a time
 Menu, Tray, Icon, %A_ScriptDir%\script_icon.png ; loading a script icon
+; prefix titlematch, unless otherwise specified
+SetTitleMatchMode, 2
 ; include section
 #include, %A_ScriptDir%\..\shared utilities\sharedUtilities.ahk
 #include, %A_ScriptDir%\classes\programClass.ahk
