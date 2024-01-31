@@ -1,3 +1,5 @@
+#SingleInstance, Force
+Menu, Tray, Icon, %A_ScriptDir%\..\icons\superMemoScriptIcon.png
 ; SuperMemo classes
 class Supermemo{
    KT_select(){
@@ -93,6 +95,16 @@ class ConceptSelectBox{
          Send, {Enter}
       return 
       ; something about the question window, auto-answer
+#If
+
+
+#If WinActive("ConceptSelectBox")
+      !1::ConceptSelectBox.buttonClicker(ConceptSelectBox.viewElement)
+      !2::ConceptSelectBox.buttonClicker(ConceptSelectBox.moveElement)
+      !3::ConceptSelectBox.buttonClicker(ConceptSelectBox.linkElement)
+      !4::ConceptSelectBox.buttonClicker(ConceptSelectBox.select_default_concept)
+      !5::ConceptSelectBox.buttonClicker(ConceptSelectBox.view_last_in_hook)
+      !6::ConceptSelectBox.buttonClicker(ConceptSelectBox.close_concept_select)
 #If
 
 ;stuff commented out

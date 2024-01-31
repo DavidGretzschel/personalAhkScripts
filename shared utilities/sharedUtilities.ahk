@@ -14,6 +14,24 @@ class Utilities{
       CoordMode, Mouse, Client
    }
 }
+
+; utility functions
+   foreground_toggle(){ 
+      Winset, Alwaysontop, , A
+   }
+   tall_slender_window(){
+      WinMove, A,,,, 780, 1000
+   }
+   midsize_window(){
+      WinMove, A,,,, 800, 800
+   }
+
+   quick_audio_switcher(){
+      SetKeyDelay, 400
+      Send,#b
+      Send, {Up}{Up}{Up}{Up}{Enter}{Tab}{Up}{Enter}
+      ; do I need a version for each direction? Lame
+   }
 ; helpful functions used by classes, I think
 ; should be merged with utilities, I believe
 open_run(program_name){
