@@ -6,18 +6,6 @@ class Shortcut {
       this.windowName := windowName
       this.shortcutPath := shortcutPath
    }
-   pageOpen() {
-      SetTitleMatchMode, 3
-      if(WinExist(this.windowName))
-         WinActivate, % this.windowName
-      else if(WinExist("ahk_exe ONENOTE.EXE")){
-         WinActivate, ahk_exe ONENOTE.EXE
-         Send, ^m
-         Sleep, 250
-         Run, % this.shortcutPath
-         }
-      else Run, % this.shortcutPath
-   }
    programOpen() {
       if(WinExist(this.windowName))
          WinActivate, % this.windowName
@@ -30,27 +18,51 @@ class Shortcut {
       else Run, % this.shortcutPath
       }
 }
+class Page extends Shortcut {
+   __New(windowName, shortcutPath) {
+      base.__New(windowName, shortcutPath)
+      this.windowName := this.windowName . " - OneNote"
+   }
+   pageOpen() {
+      SetTitleMatchMode, 3
+      if(WinExist(this.windowName))
+         WinActivate, % this.windowName
+      else if(WinExist("ahk_exe ONENOTE.EXE")){
+         WinActivate, ahk_exe ONENOTE.EXE
+         Send, ^m
+         Sleep, 250
+         Run, % this.shortcutPath
+         }
+      else Run, % this.shortcutPath
+   }
+}
 
 ;OneNote Pages
-   global EventHorizon := new Shortcut("event horizon - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#event%20horizon&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={E8E54099-3F9E-48E9-99ED-AE2AFB3FCDB3}&end")
-   global TempOneNote := new Shortcut("temp OneNote buffer - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#temp%20OneNote%20buffer&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={A299E734-FDE2-4672-9A8D-F38DB96675FA}&end")
-   global KeySpaceRegistry := new Shortcut("keyspace registry - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#keyspace%20registry&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={21E2ED5F-AD11-41EA-8993-ADA15C2CCE75}&end")
-
-   global StructuredMind := new Shortcut("The Structured Mind System - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#The%20Structured%20Mind%20System&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={D4DD5B5D-2ACF-40F5-9555-1ACBC04F95C6}&end")
-   global NetworkModeling := new Shortcut("Conscious Network Modeling, Shifting, Init - OneNote", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#Conscious%20Network%20Modelling%20+%20Shifting&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={BDB9DD31-0FA0-4D75-B694-DDF5301C4E4A}&end")
+   global EventHorizon := new Page("Event Horizon", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#event%20horizon&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={E8E54099-3F9E-48E9-99ED-AE2AFB3FCDB3}&end")
+   global TempOneNote := new Page("Temp OneNote Buffer", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#temp%20OneNote%20buffer&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={A299E734-FDE2-4672-9A8D-F38DB96675FA}&end")
+   global KeySpaceRegistry := new Page("Keyspace Registry", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#keyspace%20registry&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={21E2ED5F-AD11-41EA-8993-ADA15C2CCE75}&end")
+   global IconLibrary := new Page("Icon Library", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#Icon%20Library&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={A6098B45-44C2-4E70-A168-383B6DE26A64}&end")
+   global DayTemplate := new Page("Day Template", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#Day%20Template&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={E41FB9F0-797E-44AE-BF8F-576CF4F045EA}&end")
+   global StructuredMind := new Page("The Structured Mind System", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#The%20Structured%20Mind%20System&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={D4DD5B5D-2ACF-40F5-9555-1ACBC04F95C6}&end")
+   global NetworkModeling := new Page("Conscious Network Modeling, Shifting, Init", "onenote:https://d.docs.live.net/0c2fc6153c0dbd75/Documents/JVNJ/Central.one#Conscious%20Network%20Modelling%20+%20Shifting&section-id={09BD1D1D-B55B-43CF-B3D4-1BD049F53541}&page-id={BDB9DD31-0FA0-4D75-B694-DDF5301C4E4A}&end")
 ;programs
    global WhatsApp := new Shortcut("WhatsApp","explorer.exe shell:appsFolder\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App")
    global Discord := new Shortcut("Discord","C:\Users\david\AppData\Local\Discord\Update.exe --processStart Discord.exe")
-   
-   global DepartmentOfMysteries := new Shortcut("C:\Users\david\USERLAND...\DepartmentOfMysteries.kdbx - KeePass","C:\Users\david\USERLAND_CLOUD\OneDrive\USERLAND\resources\passwords\DepartmentOfMysteries.kdbx")
-   global Notepad := new Shortcut("temp text buffer","C:\Users\david\USERLAND_CLOUD\OneDrive\USERLAND\resources\AHK targets\temp text buffer.txt")   
+   global Spotify := new Shortcut("ahk_exe Spotify.exe","C:\Users\david\AppData\Local\Discord\Update.exe --processStart Discord.exe")
    global Honeycam := new Shortcut("Honeycam", "C:\Program Files\Honeycam\Honeycam.exe")
    global LogitechGHub := new Shortcut("Logitech G HUB","C:\Program Files\LGHUB\lghub.exe")
+   
+   global Notepad := new Shortcut("temp text buffer","C:\Users\david\USERLAND_CLOUD\OneDrive\USERLAND\resources\AHK targets\temp text buffer.txt")   
    global AhkScripts := new Shortcut("AHK helper scripts (Workspace) - Visual Studio Code", "C:\Users\david\USERLAND_CLOUD\GitHub\personalAhkScripts\AHK helper scripts.code-workspace")
+   global DepartmentOfMysteries := new Shortcut("C:\Users\david\USERLAND...\DepartmentOfMysteries.kdbx - KeePass","C:\Users\david\USERLAND_CLOUD\OneDrive\USERLAND\resources\passwords\DepartmentOfMysteries.kdbx")
+
 ;webapps
    global GoogleImages := new shortcut("Google Images", "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe  --profile-directory=Default --app-id=mncpghpmkopgmjlgjcmokgmhkflifgph")
    global EnglishGermanDictionary := new shortcut("English German Dictionary", "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe  --profile-directory=Default --app-id=ojacioocednnlojnikigjajbbkckfbca")
    global AmazonOrders := new shortcut("Amazon Orders", "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe  --profile-directory=Default --app-id=obfpkkifcflgkglhhnjmhadimbdpjmlc")
+   
+   global PublicIntentions := new shortcut("public Intentions", "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe  --profile-directory=Default --app-id=dklkdpbpoohkbafhodcckffbbjiddnkg")
+   global ChatGPT := new shortcut("ChatGPT", "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe  --profile-directory=Default --app-id=jckaldkomadaenmmgladeopgmfbahfjm")
 ;folders
    global CDrive := new Shortcut("C:\","C:\")
    global SuperMemo := new Shortcut("C:\SuperMemo\","C:\SuperMemo\")
@@ -70,19 +82,23 @@ class Shortcut {
 
 ;Hotkeys
 ;OneNote
-   F13 & F1::WinSetTitle, A,, today
-   F13 & F2::WinSetTitle, A,, tomorrow
-   F13 & F3::WinSetTitle, A,, ubermorrow
-   
+   ;winsetters
+      F13 & F1::WinSetTitle, A,, today
+      F13 & F2::WinSetTitle, A,, tomorrow
+      F13 & F3::WinSetTitle, A,, ubermorrow
+   ;time
    F13 & 1::WinActivate, today
    F13 & 2::WinActivate, tomorrow
    F13 & 3::WinActivate, ubermorrow
    F13 & 4::EventHorizon.pageOpen()
-
-   F13 & q::TempOneNote.pageOpen()
-   F13 & w::KeySpaceRegistry.pageOpen()
-   F13 & e::StructuredMind.pageOpen()
-   F13 & r::NetworkModeling.pageOpen()
+   ;mental
+   F13 & q::StructuredMind.pageOpen()
+   F13 & w::NetworkModeling.pageOpen()
+   ;logistical
+   F13 & a::TempOneNote.pageOpen()
+   F13 & s::KeySpaceRegistry.pageOpen()
+   F13 & d::IconLibrary.pageOpen()
+   F13 & f::DayTemplate.pageOpen()
    
 ; ; Programs + Webappps
    ; singleton apps on F-row
@@ -101,20 +117,22 @@ class Shortcut {
    F14 & a::GoogleImages.programOpen()
    F14 & s::EnglishGermanDictionary.programOpen()
    F14 & d::AmazonOrders.programOpen()
+   F14 & f::PublicIntentions.programOpen()
+   F14 & g::ChatGPT.programOpen()
    
 ; folders
-; big important data folders on homerow
+   ; big important data folders on homerow
    F15 & 1::CDrive.folderOpen()
    F15 & 2::SuperMemo.folderOpen()
    F15 & 3::USERLAND_LOCAL.folderOpen()
    F15 & 4::USERLAND_CLOUD.folderOpen()
    
-; OneDrive stuff here
+   ; OneDrive stuff here
    F15 & q::UserlandOneDrive.folderOpen()
    F15 & w::Inbox.folderOpen()
    F15 & e::Reference.folderOpen()
    F15 & r::Resources.folderOpen()
-;system-internal stuff here
+   ;system-internal stuff here
    F15 & z::Startup.folderOpen()
    F15 & x::ProgramFilesfolder.folderOpen()
    F15 & c::ProgramFiles86.folderOpen()
