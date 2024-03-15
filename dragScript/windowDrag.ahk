@@ -27,7 +27,7 @@
 ; This is the setting that runs smoothest on my
 ; system. Depending on your video card and cpu
 ; power, you may want to raise or lower this value.
-Menu, Tray, Icon, %A_ScriptDir%\drag_icon.png
+Menu, Tray, Icon, %A_ScriptDir%\..\icons\dragIcon.png
 #SingleInstance, force
 ; DAVID: some kind of OS-performance-dependent setting? a tradeoff in responsiveness?
 SetWinDelay,0
@@ -37,7 +37,6 @@ SetWinDelay,0
 CoordMode, Mouse, Screen
 return
 ; end of preamble
-
 ;DAVID: just maps an action to alt+left
 #IfWinNotActive, ahk_class Age of Empires ||: Definitive Edition
    !LButton::
