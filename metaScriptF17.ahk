@@ -13,7 +13,7 @@ F17 & 2::launchScript(A_ScriptDir . "\dragScript\windowDrag.ahk")
     F17 & F2::WinClose, windowDrag.ahk - AutoHotkey
 F17 & 3::launchScript(A_ScriptDir . "\windowSpyScript\windowSpy.exe")
     F17 & F3::WinClose, Window Spy
-F17 & 4::launchScript(A_ScriptDir . "\experimental script\experimentalScript.ahk")
+F17 & 4::launchScript(A_ScriptDir . "\experimentalScript\experimentalScript.ahk")
     F17 & F4::WinClose, experimentalScript.ahk - AutoHotkey
 F17 & 5::launchScript(A_ScriptDir . "\oneNoteScript\oneNoteScript.ahk")
     F17 & F5::WinClose, oneNoteScript.ahk - AutoHotkey
@@ -42,11 +42,6 @@ return
 ; self-kill and self-reload
 F17 & Enter::Reload,
 F17 & Backspace::ExitApp
-
-; Age2
-#If WinActive("Age of Empires II: Definitive Edition")
-      F4::F5
-#If    
 
 launchScript(scriptPath) {
    Run, % scriptPath,, UseErrorLevel, pid
